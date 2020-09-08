@@ -92,7 +92,7 @@ module FastJsonapi
 
       if options[:include].present?
         @includes = options[:include].reject(&:blank?).map(&:to_sym)
-        self.class.validate_includes!(@includes)
+        self.class.validate_includes!(@includes) if options[:validate_includes]
       end
 
       @serializers = options.fetch(:serializers, {}).transform_keys do |key|
